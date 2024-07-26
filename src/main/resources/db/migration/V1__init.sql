@@ -1,0 +1,34 @@
+CREATE TABLE IF NOT EXISTS film (
+id SERIAL PRIMARY KEY,
+title VARCHAR(255) NOT NULL,
+director VARCHAR(255) NOT NULL,
+capital DECIMAL(10,2) NOT NULL,
+duration DECIMAL(10,2) NOT NULL,
+release_year DATE NOT NULL,
+genre VARCHAR(50),
+language VARCHAR(30) NOT NULL ,
+synopsis VARCHAR(100)
+    );
+
+CREATE TABLE IF NOT EXISTS scene (
+id SERIAL PRIMARY KEY,
+description VARCHAR(255) NOT NULL,
+minutes DECIMAL(10,2) NOT NULL,
+location VARCHAR(100) NOT NULL,
+date_shot DATE NOT NULL ,
+actors_involved VARCHAR(200) NOT NULL,
+film_id INT,
+FOREIGN KEY (film_id) REFERENCES film(id)
+    );
+
+CREATE TABLE IF NOT EXISTS characters (
+id SERIAL PRIMARY KEY,
+description VARCHAR(255) NOT NULL,
+cost DECIMAL(10,2) NOT NULL,
+name VARCHAR(100) NOT NULL,
+rol VARCHAR(100) NOT NULL,
+scene_id INT,
+FOREIGN KEY (scene_id) REFERENCES scene(id)
+    );
+
+
